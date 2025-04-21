@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"net/http"
 )
 
@@ -12,9 +13,9 @@ func (app *Config) broker(w http.ResponseWriter, r *http.Request) {
 
 	_ = app.writeJSON(w, http.StatusOK, payload)
 
-	//out, _ := json.MarshalIndent(payload, "", "\t")
-	//w.Header().Set("Content-Type", "application/json")
-	//w.WriteHeader(http.StatusAccepted)
+	out, _ := json.MarshalIndent(payload, "", "\t")
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusAccepted)
 
-	//w.Write(out)
+	w.Write(out)
 }
